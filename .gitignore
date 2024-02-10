@@ -1,0 +1,32 @@
+# IDEs
+**/.vscode
+**/.idea
+
+# nodejs
+**/node_modules
+./package-lock.json
+
+# Python
+**/.pytest_cache
+**/__pycache__
+**/venv
+**/.venv
+.pytest_cache
+*.egg-info
+.mypy_cache
+__pycache__
+**/.env
+
+# .workbench
+.config
+.home/.aws-session
+
+# others
+*.zip
+*.sha256
+*.tar.gz
+src/aws_core/.venv
+src/lambdas/api_lambda/.venv
+.DS_Store# IDEs
+**/.vscode
+**/.idea

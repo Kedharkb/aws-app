@@ -1,0 +1,16 @@
+# pyproject.toml at the root of your project
+[tool.poetry]
+name = "api-lambda"
+version = "0.1.0"
+description = ""
+authors = ["Kedharkb <kedhar.kb@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+app_core = {path = "../../app_core", develop = true }
+pandas = "^2.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

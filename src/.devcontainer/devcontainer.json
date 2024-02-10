@@ -1,0 +1,34 @@
+{
+	"name": "poetry3-poetry-pyenv",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=${localEnv:DOCKER_HOME_DIR}/.ssh,type=bind",
+		"source=${localEnv:HOME}/.gitconfig,target=${localEnv:DOCKER_HOME_DIR}/.gitconfig,type=bind",
+		"source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"njpwerner.autodocstring"
+			]
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/black:2": {},
+		"ghcr.io/devcontainers-contrib/features/pylint:2": {}
+	},
+	"workspaceMount": "source=${localWorkspaceFolder}/../../,target=${localWorkspaceFolder}/../../,type=bind,consistency=cached",
+	"workspaceFolder": "${localWorkspaceFolder}",
+	"postCreateCommand": [
+		"/bin/sh",
+		"-c",
+		"poetry install --no-root"
+	],
+	"runArgs": [
+		"--env-file",
+		"./.devcontainer/devconatiner.env"
+	]
+}

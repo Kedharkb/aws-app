@@ -1,0 +1,41 @@
+name: Deploy and Trigger Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Assume IAM Role
+        id: assume-role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::381492264897:role/lambda_role
+          role-duration-seconds: 3600 
+        env:
+          AWS_DEFAULT_REGION: eu-central-1
+          AWS_DEFAULT_OUTPUT: json
+    
+      - name: Install CDK dependencies
+        run: npm install -g aws-cdk
+
+      - name: Synthesize CDK app
+        run: cdk synth
+
+      - name: Show CDK diff
+        run: cdk diff
+
+      - name: Deploy CDK stack
+        run: cdk deploy --require-approval never

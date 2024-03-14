@@ -39,10 +39,18 @@ jobs:
         run: npm install -g aws-cdk
 
       - name: Synthesize CDK app
-        run: cdk synth
+        run: |
+          cd infrastructure
+          npm ci
+          npm run build
+          npx cdk synth
 
       - name: Show CDK diff
-        run: cdk diff
+        run: |
+          cd infrastructure
+          npx cdk diff
 
       - name: Deploy CDK stack
-        run: cdk deploy --require-approval never
+        run: |
+          cd infrastructure
+          npx cdk deploy --require-approval never

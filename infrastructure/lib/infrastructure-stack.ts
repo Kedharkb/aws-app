@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import * as sm from 'aws-cdk-lib/aws-secretsmanager';
-
+import {AwsAppStage} from './stages/aws-app'
 export class InfrastructureStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -10,7 +10,7 @@ export class InfrastructureStack extends cdk.Stack {
     const secret = sm.Secret.fromSecretAttributes(this, "ImportedSecret", {
       secretCompleteArn: "arn:aws:secretsmanager:eu-central-1:381492264897:secret:github-token-AzXgoT"
     });
-    new CodePipeline(this, 'Pipeline', {
+    const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'aws-app',
       synth: new ShellStep('SynthStep', {
           input: CodePipelineSource.gitHub(
@@ -30,6 +30,19 @@ export class InfrastructureStack extends cdk.Stack {
       }),
   });
 
+  const backendStage = new AwsAppStage(
+    this,
+   "AwsAppStage",
+    {
+      env:{
+        account: '381492264897',
+        region: 'eu-central-1'
+      }
+    }
+  );
+
+  pipeline.addStage(backendStage)
+   
   
   }
 }

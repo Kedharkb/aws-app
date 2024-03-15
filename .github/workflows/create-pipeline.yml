@@ -34,7 +34,10 @@ jobs:
           aws-region: eu-central-1
         env:
           AWS_DEFAULT_OUTPUT: json
-    
+      
+      - name: Check Assumed Role
+        run: aws sts get-caller-identity
+        
       - name: Install CDK dependencies
         run: npm install -g aws-cdk
 

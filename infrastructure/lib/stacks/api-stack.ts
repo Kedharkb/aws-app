@@ -12,7 +12,7 @@ export class ApiStack extends cdk.Stack {
     //     assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
     //   });
       
-    const existingRole = Role.fromRoleArn(this, 'LambdaRole', 'arn:aws:iam::381492264897:role/3814-9226-4897');
+    const existingRole = Role.fromRoleArn(this, 'LambdaRole', 'arn:aws:iam::381492264897:role/lambda_role');
 
 
     new Function(this, 'ApiLambda', {

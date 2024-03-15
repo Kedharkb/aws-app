@@ -37,7 +37,10 @@ jobs:
       
       - name: Check Assumed Role
         run: aws sts get-caller-identity
-        
+      
+       - name: Check policies
+        run: aws iam list-attached-role-policies --role-name lambda_role
+
       - name: Install CDK dependencies
         run: npm install -g aws-cdk
 

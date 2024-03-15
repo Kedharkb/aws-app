@@ -43,14 +43,14 @@ jobs:
           cd infrastructure
           npm ci
           npm run build
-          npx cdk synth
+          npx cdk synth --verbose
 
       - name: Show CDK diff
         run: |
-          cd infrastructure
-          npx cdk diff
+          cd infrastructure 
+          npx cdk diff --verbose
 
       - name: Deploy CDK stack
         run: |
           cd infrastructure
-          npx cdk deploy --require-approval never
+          npx cdk deploy --require-approval never --verbose

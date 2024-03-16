@@ -10,3 +10,5 @@ new InfrastructureStack(app, 'InfrastructureStack', {
     region: 'eu-central-1'
   }
 });
+
+app.synth()

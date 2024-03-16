@@ -7,18 +7,12 @@ export class InfrastructureStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     
-    const secret = sm.Secret.fromSecretAttributes(this, "ImportedSecret", {
-      secretCompleteArn: "arn:aws:secretsmanager:eu-central-1:381492264897:secret:github-token-AzXgoT"
-    });
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'aws-app',
       synth: new ShellStep('SynthStep', {
           input: CodePipelineSource.gitHub(
             `Kedharkb/aws-app`,
-            'master',
-            {
-              authentication:secret.secretValue
-            }
+            'master'
           ),
           primaryOutputDirectory: "infrastructure/cdk.out",
           commands: [
@@ -43,6 +37,6 @@ export class InfrastructureStack extends cdk.Stack {
 
   pipeline.addStage(backendStage)
    
-  
+
   }
 }

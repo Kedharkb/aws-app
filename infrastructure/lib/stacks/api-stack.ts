@@ -12,14 +12,14 @@ export class ApiStack extends cdk.Stack {
     //     assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
     //   });
       
-    const existingRole = Role.fromRoleArn(this, 'LambdaRole', 'arn:aws:iam::381492264897:role/lambda_role');
+    // const existingRole = Role.fromRoleArn(this, 'LambdaRole', 'arn:aws:iam::381492264897:role/lambda_role');
 
 
     new Function(this, 'ApiLambda', {
         runtime: Runtime.PYTHON_3_10,
         handler: 'app.lambda_handler',
         code: Code.fromAsset('../src/lambdas/api_lambda/api_lambda'),
-        role:existingRole,
+        // role:existingRole,
         timeout: Duration.minutes(5)
       });
     }

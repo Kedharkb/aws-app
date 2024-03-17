@@ -7,7 +7,6 @@ authors = ["Kedharkb <kedhar.kb@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-app_core = {path = "../../app_core", develop = true }
 pandas = "^2.2.0"
 
 

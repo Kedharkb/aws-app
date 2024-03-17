@@ -1,8 +1,9 @@
 import json
 
+
 def lambda_handler(event, context):
     # Parse the incoming event
-    request_body = json.loads(event['body'])
+    request_body = event['body']
     
     # Perform some processing
     response_body = {

@@ -9,8 +9,8 @@ export class ApiStack extends cdk.Stack {
 
     new Function(this, 'ApiLambda', {
         runtime: Runtime.PYTHON_3_10,
-        handler: 'app.lambda_handler',
-        code: Code.fromAsset('../src/lambdas/api_lambda/api_lambda'),
+        handler: 'api_lambda.app.lambda_handler',
+        code: Code.fromAsset('../src/lambdas/api_lambda/'),
         timeout: Duration.minutes(5)
       });
     }

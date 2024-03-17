@@ -37,6 +37,5 @@ export class InfrastructureStack extends cdk.Stack {
 
   pipeline.addStage(backendStage)
    
-
   }
 }

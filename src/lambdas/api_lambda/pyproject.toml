@@ -7,8 +7,6 @@ authors = ["Kedharkb <kedhar.kb@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pandas = "^2.2.0"
-
 
 [build-system]
 requires = ["poetry-core"]
